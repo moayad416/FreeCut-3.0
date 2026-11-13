@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#17181c">
+<title>FreeCut Mobile — free video editor</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">✂</div>
+  <h1>FreeCut</h1>
+  <button class="btn ghost" id="undoBtn" title="Undo">↺</button>
+  <button class="btn" id="exportBtn">Export</button>
+</header>
+
+<div id="preview">
+  <video id="player" playsinline webkit-playsinline></video>
+  <img id="imgPreview" class="hidden" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000">
+  <div id="textLayer"></div>
+  <div class="empty" id="emptyHint">
+    <div style="font-size:34px">🎬</div>
+    Tap <b>+ Video</b> below to add clips.<br>Everything stays on your phone.
+  </div>
+</div>
+
+<div id="playbar">
+  <button class="btn" id="playBtn">▶</button>
+  <span id="timeLbl">0:00.0 / 0:00.0</span>
+  <input type="range" id="seek" min="0" max="1000" value="0">
+</div>
+
+<div id="toolbar">
+  <button class="btn ghost" id="addVideoBtn">＋ Video</button>
+  <button class="btn ghost" id="addMusicBtn">♫ Music</button>
+  <button class="btn ghost" id="textBtn">🅣 Text</button>
+  <button class="btn ghost" id="splitBtn">✂ Split</button>
+  <button class="btn ghost" id="dupBtn">⧉ Copy</button>
+  <button class="btn ghost" id="delBtn">🗑 Delete</button>
+  <button class="btn ghost" id="autoBtn">✨ Auto</button>
+  <button class="btn ghost" id="aiBtn">🤖 AI</button>
+  <button class="btn ghost" id="aiImgBtn">🖼 Image</button>
+  <input type="file" id="videoInput" accept="video/*,image/*" multiple class="hidden">
+  <input type="file" id="musicInput" accept="audio/*" class="hidden">
+</div>
+
+<div id="timelineWrap">
+  <div id="tlScroll"><div id="tl"><div id="tlEmpty">Timeline is empty</div></div></div>
+</div>
+
+<div id="sheet">
+  <h2 id="sheetTitle">Clip</h2>
+  <div id="sheetBody"><p class="note">Select a clip to adjust speed, volume and look.
+    Drag the edges of a clip to trim it. Drag a clip left/right to reorder.</p></div>
+</div>
+
+<div id="modal"><div class="card" id="modalCard"></div></div>
+
+<script src="js/editor.js"></script>
+<script src="js/autocut.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/aiimage.js"></script>
+<script src="js/ffwrapper.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
