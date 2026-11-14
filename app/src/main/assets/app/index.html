@@ -13,6 +13,7 @@
 <body>
 
 <header>
+  <button class="btn ghost" id="homeBtn" title="Home">⌂</button>
   <div class="logo">✂</div>
   <h1>FreeCut</h1>
   <button class="btn ghost" id="undoBtn" title="Undo">↺</button>
@@ -60,6 +61,53 @@
 </div>
 
 <div id="modal"><div class="card" id="modalCard"></div></div>
+
+<!-- home screen (first page): big create card + quick tools, like FreeCut for PC -->
+<div id="home" class="open">
+  <div class="h-wrap">
+    <div class="h-head">
+      <div class="h-logo">✂</div>
+      <div class="h-headtx">
+        <div class="h-title">FreeCut</div>
+        <div class="h-sub">Free video editor — everything stays on your phone</div>
+      </div>
+    </div>
+
+    <button class="h-create" id="h_create">
+      <span class="h-plus">＋</span>
+      <span class="h-create-tx">
+        <span class="h-create-name">Create project</span>
+        <span class="h-create-sub">Trim · text · music · filters · export</span>
+      </span>
+    </button>
+
+    <div class="h-sec">Quick tools</div>
+    <div class="h-grid">
+      <button class="h-card" id="h_auto">
+        <span class="h-tile" style="--g1:#ff9a4d;--g2:#e8542f;--sh:rgba(255,130,60,.42)">✂️</span>
+        <span class="h-name">Auto Cut</span>
+        <span class="h-desc">Remove silences</span>
+      </button>
+      <button class="h-card" id="h_captions">
+        <span class="h-tile" style="--g1:#a06cff;--g2:#6d3df0;--sh:rgba(150,100,255,.42)">💬</span>
+        <span class="h-name">AI Captions</span>
+        <span class="h-desc">Speech to text</span>
+      </button>
+      <button class="h-card" id="h_image">
+        <span class="h-tile" style="--g1:#42b0ff;--g2:#2563eb;--sh:rgba(70,150,255,.42)">🖼️</span>
+        <span class="h-name">AI Image</span>
+        <span class="h-desc">Words to picture</span>
+      </button>
+      <button class="h-card" id="h_ai">
+        <span class="h-tile" style="--g1:#2dd4a7;--g2:#0e9c7c;--sh:rgba(40,205,170,.42)">🤖</span>
+        <span class="h-name">AI Assistant</span>
+        <span class="h-desc">Edit with words</span>
+      </button>
+    </div>
+
+    <div class="h-foot">Free forever · no account · works offline after the first export</div>
+  </div>
+</div>
 
 <script src="js/editor.js"></script>
 <script src="js/autocut.js"></script>
