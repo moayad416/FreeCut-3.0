@@ -98,6 +98,10 @@
       pushUndo();
     }
     renderAll();
+    if (pendingTool) {                     // came from a home-screen tool card
+      const t = pendingTool; pendingTool = null;
+      if (project.clips.length) applyHomeTool(t);
+    }
   }
 
   $("addVideoBtn").onclick = () => $("videoInput").click();
@@ -979,10 +983,35 @@
       a.href = URL.createObjectURL(lastBlob);
       a.download = lastName;
       a.click();
-      setTimeout(() => URL.revokeObjectURL(a.href), 60000);
+      setTimeout(() => URL.createObjectURL(a.href), 60000);
       $("progLbl").textContent = "Download started";
     }
   }
+
+  // ------------------------------------------------------------ home screen
+  let pendingTool = null;   // tool card tapped on home, waiting for media import
+  function applyHomeTool(tool) {
+    if (tool === "auto") { sheetMode = "auto"; renderSheet(); }
+    else if (tool === "ai") { sheetMode = "ai"; renderSheet(); }
+    else if (tool === "captions") {
+      sheetMode = "ai"; renderSheet();
+      const s = (window.FCAI && FCAI.loadSettings) ? FCAI.loadSettings() : {};
+      if (s.key && project.clips.length) runCaptions();
+    }
+  }
+  function enterEditor(tool) {
+    $("home").classList.remove("open");
+    if (tool === "image") { $("aiImgBtn").onclick(); return; }
+    if (!tool) { $("videoInput").click(); return; }      // Create project → pick clips
+    if (!project.clips.length) { pendingTool = tool; $("videoInput").click(); }
+    else applyHomeTool(tool);
+  }
+  $("h_create").onclick = () => enterEditor(null);
+  $("h_auto").onclick = () => enterEditor("auto");
+  $("h_captions").onclick = () => enterEditor("captions");
+  $("h_image").onclick = () => enterEditor("image");
+  $("h_ai").onclick = () => enterEditor("ai");
+  $("homeBtn").onclick = () => { pause(); $("home").classList.add("open"); };
 
   // ------------------------------------------------------------ render + boot
   function renderAll() {
